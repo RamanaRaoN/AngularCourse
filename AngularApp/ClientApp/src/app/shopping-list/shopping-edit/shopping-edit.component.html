@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form>
+      <div class="col-xs-5 form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" class="form-control" #nameInput />
+      </div>
+      <div class="col-xs-2 form-group">
+        <label for="name">Amount</label>
+        <input type="number" id="amount" class="form-control" #amountInput />
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-success" (click)="addIngredient()">Add</button>
+          <button type="button" class="btn btn-danger">Delete</button>
+          <button type="button" class="btn btn-primary">Add</button>
+        </div>
+
+      </div>
+      <!-- test custom directives
+  <p textHeighLight>test basic directive</p>
+      <p style="color:white"  bettertextHeighLight>test basic directive</p>-->
+      <p bettertextHeighLight>test basic directive</p>
+    </form>
+  </div>
+</div>

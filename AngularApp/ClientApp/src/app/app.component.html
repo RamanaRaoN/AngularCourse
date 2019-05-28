@@ -1,0 +1,76 @@
+<!--<div class="container">
+  <div class="row">
+  <app-cockpit (serverCreated)="onServerAdd($event)" (blueprintCreated)="onBlueprintAdd($event)"></app-cockpit>
+  </div>
+  <hr>
+  <div class="row">
+    <app-server-element *ngFor="let serverElement of serverElements" [svrelement]="serverElement">
+      <p>
+        <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
+        <em *ngIf="serverElement.type === 'blueprint'" style="color: blue">{{ serverElement.content }}</em>
+      </p>
+    </app-server-element>
+  </div>
+</div>-->
+<!--Assignment  -->
+<!--<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <app-game (intervelcall)="startGame($event)"></app-game>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-md-6">
+      <h4>even</h4>
+      <app-even *ngFor="let even of evenNumber" [number]="even"></app-even>
+    </div>
+    <div class="col-md-6">
+      <h4>odd</h4>
+      <app-odd *ngFor="let odd of oddNumber" [oddnumber]="odd"></app-odd>
+
+    </div>
+  </div>
+</div>-->
+<!--Recipe book-->
+
+<!--<App-header (tabFeature)="onSelectTab($event)"></App-header>-->
+<App-header></App-header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!--before using routes-->
+
+      <!--<app-recipes *ngIf="loadFeature ==='recipe'"></app-recipes>
+  <app-shopping-list *ngIf="loadFeature !=='recipe'"></app-shopping-list>-->
+
+      <!--after using routes-->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div>
+
+
+
+<!-- Service inject -->
+
+<!--<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <!--<app-new-account (accountAdded)="onAccountAdded($event)"></app-new-account>-->
+      <!--<app-new-account ></app-new-account>
+      <hr>-->
+      <!--<app-account *ngFor="let acc of accounts; let i = index"
+           [account]="acc"
+           [id]="i"
+           (statusChanged)="onStatusChanged($event)"></app-account>-->
+      <!--<app-account *ngFor="let acc of accounts; let i = index"
+                   [account]="acc"
+                   [id]="i"></app-account>
+    </div>
+  </div>
+</div>-->
+
+
