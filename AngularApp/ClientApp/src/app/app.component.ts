@@ -40,6 +40,7 @@ export class AppComponent {
   startGame(firenumber: number) {
     if (firenumber % 2 === 0) {
       this.evenNumber.push(firenumber);
+
     }
     else {
       this.oddNumber.push(firenumber);
