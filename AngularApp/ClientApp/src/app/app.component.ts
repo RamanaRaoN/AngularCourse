@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AccountService } from './accounts.service';
 
 @Component({
@@ -7,10 +7,10 @@ import { AccountService } from './accounts.service';
   styleUrls: ['./app.component.css'],
   providers: [AccountService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   constructor() {
-    //console.log('c call');
+    console.log('c call');
   }
 
   title = 'app';
@@ -57,10 +57,10 @@ export class AppComponent {
     this.loadFeature = feature;
   }
 
-  //ngOnInit() {
-  //  // throw new Error("Method not implemented.");
-  //  // console.log('');
-  //}
+  ngOnInit() {
+    // throw new Error("Method not implemented.");
+     console.log('');
+  }
 
 
   /*inject service*/
