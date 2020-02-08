@@ -4,7 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 @Component({
     selector: 'app-recipe-edit',
     templateUrl: './recipe-edit.component.html',
-    styleUrls: ['./recipe-edit.component.scss']
+   // styleUrls: ['./recipe-edit.component.scss']
 })
 /** recipe-edit component*/
 export class RecipeEditComponent implements OnInit {

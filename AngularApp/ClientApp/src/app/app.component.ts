@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AccountService } from './accounts.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -70,4 +71,17 @@ export class AppComponent {
   //ngOnInit() {
   //  this.accounts = this.accountservice.accounts;
   //}
+
+
+    // Forms Code
+
+
+    //onSubmit(form: NgForm) {
+    //    console.log(form);
+    //}
+
+    @ViewChild('f') signUpForm: NgForm
+    onSubmit() {
+        console.log(this.signUpForm);
+    }
 }
