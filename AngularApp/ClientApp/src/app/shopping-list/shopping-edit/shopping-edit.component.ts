@@ -5,7 +5,7 @@ import { ShoppingListService } from '../shoppingList.service';
 @Component({
     selector: 'app-shopping-edit',
     templateUrl: './shopping-edit.component.html',
-    styleUrls: ['./shopping-edit.component.scss']
+  //  styleUrls: ['./shopping-edit.component.scss']
 })
 /** shopping-edit component*/
 export class ShoppingEditComponent {
