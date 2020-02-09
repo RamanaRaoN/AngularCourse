@@ -32,6 +32,9 @@ import { ShoppingListService } from './shopping-list/shoppingList.service';
 import { AppRouteModule } from './app-route.module';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { customPipe } from './custom.pipe';
+
+
 
 
 
@@ -60,13 +63,14 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     AccountComponent,
     NewAccountComponent,
     RecipeStartComponent,
-    RecipeEditComponent
+        RecipeEditComponent,
+        customPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
       FormsModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
     //RouterModule.forRoot([
     //  { path: '', component: HomeComponent, pathMatch: 'full' },
     //  { path: 'counter', component: CounterComponent },

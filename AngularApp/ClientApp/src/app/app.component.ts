@@ -1,6 +1,10 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { AccountService } from './accounts.service';
 import { NgForm, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { promise } from 'protractor';
+import { LowerCasePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-root',
@@ -123,27 +127,150 @@ export class AppComponent implements OnInit {
     Genders = ['male', 'female'];
 
     sForm: FormGroup;
+    forbiddenUserNames = ['chris', 'anna'];
 
-    ngOnInit() {
-        this.sForm = new FormGroup({
-            'userData': new FormGroup({
-                'username': new FormControl(null, Validators.required),
-                'email': new FormControl(null, [Validators.required, Validators.email])
-            }),            
-            'gender': new FormControl('male'),
-            'hobbies': new FormArray([])
-        });
+    //ngOnInit() {
+    //    this.sForm = new FormGroup({
+    //        'userData': new FormGroup({
+    //            'username': new FormControl(null, [Validators.required, this.forbiddenNames.bind(this)]),
+    //            'email': new FormControl(null, [Validators.required, Validators.email], this.forbiddenEmails)
+    //        }),            
+    //        'gender': new FormControl('male'),
+    //        'hobbies': new FormArray([])
+    //    });
 
-    }
+    //    // value change
+    //    this.sForm.valueChanges.subscribe((val) => console.log(val));
+
+    //    // status change
+    //    this.sForm.statusChanges.subscribe((val) => console.log(val));
+
+    //    // set form values on pageload
+
+    //    this.sForm.setValue({
+    //        'userData': {
+    //            'username': 'max',
+    //            'email': 'test@test.com'
+    //        },
+    //        'gender': 'female',
+    //        'hobbies': []
+    //    });
+
+    //    // patch values to existing from or new form
+    //    this.sForm.patchValue({
+    //        'userData': {
+    //            'username': 'max2'
+    //        }
+    //    });
+
+    //}
 
     onAddHobby() {
         const control = new FormControl(null, Validators.required);
-        (<FormArray>this.sForm.get('hobbies')).push(control);
+        (this.sForm.get('hobbies') as FormArray).push(control);
     }
 
+    forbiddenNames(control: FormControl): { [s: string]: boolean } {
+        if (this.forbiddenUserNames.indexOf(control.value) != -1) {
+            return { 'nameIsForbidden': true }
+        }
+        return null;
+    }
+
+    //async validators
+
+    forbiddenEmails(control: FormControl): Promise<any> | Observable<any> {
+        const promise = new Promise<any>((resolve, reject) => {
+            setTimeout(() => {
+                if (control.value === 'nandigamramanarao1@gmail.com') {
+                    resolve({ 'emailIsForbidden': true })
+                } else {
+                    resolve(null)
+                }
+            },1500)
+        })
+        return promise;
+    }
 
     ronSubmit() {
         console.log(this.sForm);
+        this.sForm.reset();
+    }
+
+  
+    // Asignment .ts Code from here
+    drpOptions = [];
+    aForm: FormGroup
+    forbiddenProjectname = 'test';
+    ngOnInit() {
+        this.drpOptions = ['stable', 'critical', 'finished'];
+        this.aForm = new FormGroup({
+            'projectname': new FormControl(null, [Validators.required, this.forbiddenproject.bind(this)]),
+            'email': new FormControl(null, [Validators.required, Validators.email], this.asyncforbiddenProjectemail),
+                'status': new FormControl([this.drpOptions])
+        });
+        this.aForm.statusChanges.subscribe((val) => console.log(val));
+
+    }
+
+    forbiddenproject(c: FormControl): { [sa: string]: boolean } {
+        if (this.forbiddenProjectname === c.value) {
+            return { 'forbiddenProjectName': true }
+        }
+        return (null);
+    }
+
+    asyncforbiddenProjectemail(control: FormControl): Promise<any> | Observable<any> {
+        const promise = new Promise<any>((resolve, reject) => {
+            setTimeout(() => {
+                console.log(control.value.toLowerCase());
+                if (control.value === 'test') {
+                    resolve({ 'emailforbidden': true })
+                } else resolve(null)
+            }, 1500)
+        });
+        console.log(promise+"test log");
+        return promise;
+    }
+
+    assignmentSubmit() {
+        console.log(this.aForm);
+    }
+
+    // Pipes Code start from here
+
+    servers = [
+        {
+            instanceType: 'medium',
+            name: 'Production Servers',
+            status: 'stable',
+            started: new Date(15, 1, 2017)
+        },
+        {
+            instanceType: 'large',
+            name: 'User Database',
+            status: 'stable',
+            started: new Date(15, 1, 2017)
+        },
+        {
+            instanceType: 'small',
+            name: 'Development Server',
+            status: 'offline',
+            started: new Date(15, 1, 2017)
+        },
+        {
+            instanceType: 'small',
+            name: 'Testing Environment Server',
+            status: 'stable',
+            started: new Date(15, 1, 2017)
+        }
+    ];
+    getStatusClasses(server: { instanceType: string, name: string, status: string, started: Date }) {
+        return {
+            'list-group-item-success': server.status === 'stable',
+            'list-group-item-warning': server.status === 'offline',
+            'list-group-item-danger': server.status === 'critical'
+        };
     }
 
 }

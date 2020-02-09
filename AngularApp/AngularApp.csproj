@@ -32,6 +32,7 @@
     <None Remove="ClientApp\src\app\accounts.service.ts" />
     <None Remove="ClientApp\src\app\basic-directive\basic.directive.ts" />
     <None Remove="ClientApp\src\app\basic-directive\better.directive.ts" />
+    <None Remove="ClientApp\src\app\custom.pipe.ts" />
     <None Remove="ClientApp\src\app\Log.service.ts" />
     <None Remove="ClientApp\src\app\recipes\recipe.model.ts" />
     <None Remove="ClientApp\src\app\recipes\recipe.service.ts" />
@@ -44,6 +45,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\accounts.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\basic-directive\basic.directive.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\basic-directive\better.directive.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\custom.pipe.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Log.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\recipes\recipe.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\recipes\recipe.service.ts" />
