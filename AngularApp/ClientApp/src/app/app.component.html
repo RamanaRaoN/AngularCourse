@@ -142,8 +142,7 @@
   </div>
 </div>-->
 <!-- Rective form opproch-->
-
-<div class="container">
+<!--<div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <form [formGroup]="sForm" (ngSubmit)="ronSubmit()">
@@ -157,7 +156,12 @@
                    class="form-control">
             <span class="help-block"
                   *ngIf="!sForm.get('userData.username').valid && sForm.get('userData.username').touched">
-              Please enter username
+              <span *ngIf="sForm.get('userData.username').errors['nameIsForbidden']">
+                Please enter Valid username
+              </span>
+              <span *ngIf="sForm.get('userData.username').errors['required']">
+                Please enter username
+              </span>
             </span>
           </div>
           <div class="form-group">
@@ -182,15 +186,15 @@
         </div>
         <div formArrayName="hobbies">
           <h4> Your Hobbies</h4>
-          <button
-                  class="btn btn-default"
+          <button class="btn btn-default"
                   type="button"
-                  (click)="onAddHobby()">Add Hobby</button>
-        </div>
-
-        <div class="form-group"
-             *ngFor="let hobbyControl of sForm.get('hobbies').controls; let i = index">
-          <input type="text" class="form-control" [formControlName]="i" />
+                  (click)="onAddHobby()">
+            Add Hobby
+          </button>
+          <div class="form-group"
+               *ngFor="let hobbyControl of sForm.get('hobbies').controls; let i = index">
+            <input type="text" class="form-control" [formControlName]="i" />
+          </div>
         </div>
 
         <span class="help-block"
@@ -199,6 +203,90 @@
         </span>
         <button [disabled]="!sForm.valid " class="btn btn-primary" type="submit">Submit</button>
       </form>
+    </div>
+  </div>
+</div>-->
+<!-- Assignment -->
+<!--
+
+Create a form with below validators and controls
+    1) Project name (Should not be empty)
+    2)Mail (should not empty and valid email address)
+    3)Project status Dropdown, with three values stable, Critical, Finished
+
+    And your own validators which does not allow test as project name
+    Also impliment that validators as an async validator (replace that other one)
+    upon submitting the form, simply print the value to console.
+-->
+<!--<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form [formGroup]="aForm" (ngSubmit)="assignmentSubmit()">
+
+        <div class="form-group">
+          <label for="projectname">Project Name</label>
+          <input class="form-control"
+                 type="text"
+                 id="projectname"
+                 formControlName="projectname" />
+          <span class="help-block"
+                *ngIf="!aForm.get('projectname').valid && aForm.get('projectname').touched ">
+            <span *ngIf="aForm.get('projectname').errors['forbiddenProjectName']">
+              Please enter valid project Name
+            </span>
+
+            <span *ngIf="aForm.get('projectname').errors['required'] ">
+              Please enter projectName
+            </span>
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="email"> Email</label>
+          <input class="form-control"
+                 type="email"
+                 id="email"
+                 formControlName="email" />
+          <span class="help-block"
+                *ngIf="!aForm.get('email').valid && aForm.get('email').touched">
+          Please enter email</span>
+        </div>
+
+        <div class="form-group">
+          <label for="status">Project Name</label>
+          <select id="status"
+                  class="form-control" formControlName="status">
+            <option *ngFor="let o of drpOptions" [value]="o">{{o}}</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">submit</button>
+      </form>
+      </div>
+    </div>
+  </div>-->
+
+
+
+
+<!-- ==============================================================================-->
+<!-- Pipes Concept Example-->
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <ul class="list-group">
+        <li class="list-group-item"
+            *ngFor="let server of servers"
+            [ngClass]="getStatusClasses(server)">
+          <span class="badge">
+            {{ server.status }}
+          </span>
+          <strong>{{ server.name | check }}</strong> |
+           {{ server.instanceType | uppercase}} |
+          {{ server.started | date}}
+        </li>
+      </ul>
     </div>
   </div>
 </div>
